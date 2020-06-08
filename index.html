@@ -183,7 +183,7 @@
             Object.keys(data).forEach(function (thingName) {
                 friendlyName = data[thingName];
                 $('#deviceTable tbody').append(`<tr class="child">
-                                                  <td><a href="https://avr-iot.com/avr-iot/aws/${thingName}" target="_blank"> ${thingName} </a></td>
+                                                  <td>${thingName}</td>
                                                   <td>${friendlyName}</td>
                                                   <td>  
                                                     <button type="button" class="close" onclick=removeDevice("${thingName}")>
