@@ -99,7 +99,7 @@
                     //console.info("Sign in success")
                     console.info("IDToken: " + result.getIdToken().getJwtToken())
                     $("#signInButton").html("<font color=\"red\">Signing in ...</font>")
-                    history.pushState({}, "", "/"); //clear token displayed in URL for aesthetics
+                    history.pushState({}, "", "/mchpiotvoice"); //clear token displayed in URL for aesthetics
                     var loginKey = 'cognito-idp.' + AWS.config.region + '.amazonaws.com/' + authData[
                         'UserPoolId'];
                     login[loginKey] = result.getIdToken().getJwtToken();
