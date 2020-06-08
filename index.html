@@ -163,7 +163,6 @@
                     refreshDevice();
                 },
                 complete: function () {
-                    console.info("refreshDevice request Completed")
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     console.error("refreshDevice failed. ", textStatus)
@@ -172,11 +171,10 @@
         }
 
         function refreshTable(data) {
-            if ($.isEmptyObject(data)){
+            if ($.isEmptyObject(data)) {
                 $('#deviceTable').hide();
                 return;
-            }
-            else{
+            } else {
                 $('#deviceTable').show();
             }
             $('#deviceTable tbody').empty()
@@ -215,7 +213,7 @@
                     refreshTable(data);
                 },
                 complete: function () {
-                    console.info("refreshDevice request Completed")
+                    $("#regResultDiv").html("")
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     console.error("refreshDevice failed. ", textStatus)
@@ -291,18 +289,25 @@
                     $("#regResultDiv").delay(1500).fadeOut(400);
                     $("#regSerial").val("")
                     $("#regFriendlyName").val("")
+                    refreshDevice();
                 },
                 complete: function () {
                     $("#registerButton").prop("disabled", false);
-                    refreshDevice();
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     console.error("Registration Failed")
-                    $("#regResultDiv").html(
-                        "Registration request failed. Please retry -- <font color=\"red\"><b>" +
-                        textStatus + errorThrown + "</b></font>");
-                    auth.signOut()
-                    return;
+
+                    if ("Not Found" === errorThrown) {
+                        $("#regResultDiv").html(
+                            `Registration request failed. <font color="red">Device not found</font>`
+                        );
+                        return;
+                    } else { /*Any other errors*/
+                        $("#regResultDiv").html(
+                            `Registration request failed. Please retry -- <font color="red"><b>${textStatus} : ${errorThrown} </b></font>`
+                        );
+                        auth.signOut()
+                    }
                 }
             });
         }
