@@ -95,7 +95,6 @@
             var auth = new AmazonCognitoIdentity.CognitoAuth(authData);
             auth.userhandler = {
                 onSuccess: function (result) {
-                    //alert("Sign in success");
                     //console.info("Sign in success")
                     console.info("IDToken: " + result.getIdToken().getJwtToken())
                     $("#signInButton").html("<font color=\"red\">Signing in ...</font>")
@@ -114,9 +113,6 @@
                             auth.signOut();
                             showSignedOut();
                         } else {
-                            //var principal = AWS.config.credentials.identityId;
-                            //console.log("IdentityId: " + principal);
-                            //attachPrincipalPolicy("demo-policy", principal);
                             showSignedIn(result)
                         }
                     });
@@ -186,11 +182,11 @@
             $('#deviceTable tbody').empty()
             Object.keys(data).forEach(function (thingName) {
                 friendlyName = data[thingName];
-                $('#deviceTable tbody').append(`<tr class="child" id="thingName_${thingName}">
-                                                  <td><a class=""> ${thingName} </a></td>
+                $('#deviceTable tbody').append(`<tr class="child">
+                                                  <td><a href="https://avr-iot.com/avr-iot/aws/${thingName}" target="_blank"> ${thingName} </a></td>
                                                   <td>${friendlyName}</td>
                                                   <td>  
-                                                    <button type="button" class="close" id="RC_${thingName}" onclick=removeDevice("${thingName}")>
+                                                    <button type="button" class="close" onclick=removeDevice("${thingName}")>
                                                         <span class="fa fa-trash-o" />
                                                     </button>  
                                                   </td>
@@ -273,9 +269,7 @@
             }
             registrationData.deviceSerial = $("#regSerial").val().trim();
             registrationData.deviceFriendlyName = $("#regFriendlyName").val().trim()
-            //registrationData.principal = userVariable.principal;
-            //registrationData.sessionID = userVariable.idToken;
-            //console.info("POST data: " + JSON.stringify(registrationData))
+
             $("#regResultDiv").html("<font color=\"green\">Requesting...</font>");
             $("#registerButton").prop("disabled", true);
             $.ajax({
