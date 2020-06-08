@@ -287,11 +287,11 @@
                                   </div>`)
                     $("#regResultDiv").show()
                     $("#regResultDiv").delay(1500).fadeOut(400);
-                    $("#regSerial").val("")
-                    $("#regFriendlyName").val("")
                     refreshDevice();
                 },
                 complete: function () {
+                    $("#regSerial").val("")
+                    $("#regFriendlyName").val("")
                     $("#registerButton").prop("disabled", false);
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
