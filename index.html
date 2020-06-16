@@ -295,7 +295,7 @@
                     $("#registerButton").prop("disabled", false);
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    console.error("Registration Failed")
+                    console.error("Registration Failed ",errorThrown)
 
                     if ("Not Found" === errorThrown) {
                         $("#regResultDiv").html(
@@ -306,7 +306,7 @@
                         $("#regResultDiv").html(
                             `Registration request failed. Please retry -- <font color="red"><b>${textStatus} : ${errorThrown} </b></font>`
                         );
-                        auth.signOut()
+                        //auth.signOut()
                     }
                 }
             });
