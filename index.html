@@ -263,6 +263,7 @@
                         <a href="#" class="close fa fa-times-circle-o" data-dismiss="alert" aria-label="close"/>
                         Enter a valid serial number and Name
                       </div>`)
+                $("#regResultDiv").show()
                 return;
             }
             registrationData.deviceSerial = $("#regSerial").val().trim();
@@ -357,10 +358,10 @@
                 <p class="text-center  mt-3 h5">Register a device </p><br />
                 <form id="registrationForm">
                     <input type="text" class="form-control input-sm" style="box-shadow: none; border:0" id="regSerial"
-                        placeholder="Thing Name" autocomplete="off" required="required" pattern="[a-zA-Z0-9-]{1,40}" />
+                        placeholder="Thing Name" autocomplete="off" required="required" pattern="[a-zA-Z0-9]{1,40}" />
                     <input type="text" class="form-control input-sm" id="regFriendlyName" placeholder="Friendly name"
                         autocomplete="off" required="required" style="box-shadow: none; border:0"
-                        pattern="[a-zA-Z0-9_.,@/:#-]{1,30}" />
+                        pattern="[a-zA-Z0-9 ]{1,30}" />
                 </form>
                 <div class="text-center mt-3">
                     <button type="button" class="btn btn-primary" id="registerButton"
@@ -384,6 +385,7 @@
     </div>
     <div class="footer" id="pageFooter">
         contact <a href="https://support.microchip.com" target="_blank">Microchip support</a> to report issues
+        <p>v1.0.32</p>
     </div>
 </body>
 
