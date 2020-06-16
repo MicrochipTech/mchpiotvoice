@@ -269,6 +269,7 @@
             registrationData.deviceFriendlyName = $("#regFriendlyName").val().trim()
 
             $("#regResultDiv").html("<font color=\"green\">Requesting...</font>");
+            $("#regResultDiv").show()
             $("#registerButton").prop("disabled", true);
             $.ajax({
                 type: 'POST',
@@ -295,17 +296,19 @@
                     $("#registerButton").prop("disabled", false);
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    console.error("Registration Failed ",errorThrown)
+                    console.error("Registration Failed ", errorThrown)
 
                     if ("Not Found" === errorThrown) {
                         $("#regResultDiv").html(
                             `Registration request failed. <font color="red">Device not found</font>`
                         );
+                        $("#regResultDiv").show()
                         return;
                     } else { /*Any other errors*/
                         $("#regResultDiv").html(
                             `Registration request failed. Please retry -- <font color="red"><b>${textStatus} : ${errorThrown} </b></font>`
                         );
+                        $("#regResultDiv").show()
                         //auth.signOut()
                     }
                 }
@@ -362,7 +365,9 @@
                 <div class="text-center mt-3">
                     <button type="button" class="btn btn-primary" id="registerButton"
                         onclick="registerDevice()">Register</button>
-                    <br /><br />
+                    <br /><br /><br />
+                    <a href="https://www.amazon.com/gp/product/B08B5THZH5" target="_blank"> <img
+                            src="resources/img/APP_ICON.png" alt="APPLogo" align=center width=60>Enable Voice Skill</a>
                 </div>
             </div>
             <div id="regResultDiv"></div>
